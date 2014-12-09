@@ -1,5 +1,5 @@
 <head>
-	<title>The line: A swedish game</title>
+	<title>The line</title>
 </head>
 <body>
 	{{> header}}
@@ -20,17 +20,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-	 	 		{{> login}}
-		 	</div>
-			<div class="col-xs-12">
-		 	 	{{#if currentUser}}
-		 	 		{{#if inLine}}
-						{{> lineList}}
-		 	 		{{else}}
-						{{> joinLine}}
-		 	 		{{/if}}
-				{{/if}}
+				{{> login}}
 			</div>
+			{{#if currentUser}}
+				<div class="col-xs-12">
+					{{#if inLine}}
+						{{#if isYourTurn}}
+							<h2>It is your turn</h2>
+						{{else}}
+							{{> lineList}}
+						{{/if}}
+					{{else}}
+						{{> joinLine}}
+					{{/if}}
+				</div>
+			{{/if}}
 		</div>
 	</div>
 </template>
@@ -38,15 +42,18 @@
 
 <template name="joinLine">
 	<br>
-	<button class="btn btn-primary">
+	<button class="btn btn-primary join-line">
 		Join the line
 	</button>
 </template>
 
 <template name="lineList">
-	{{#each line}}
-		
-	{{/each}}
+	<h2>You are the {{yourPosition}} of {{totalInLine}}</h2>
+	<ol>
+		{{#each line}}
+			<li><img src="{{avatar}}"></li>
+		{{/each}}
+	</ol>
 </template>
 
 <template name="login">
