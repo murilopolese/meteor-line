@@ -1,0 +1,54 @@
+<head>
+	<title>The line: A swedish game</title>
+</head>
+<body>
+	{{> header}}
+	{{> line}}
+</body>
+
+<template name="header">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1>The line:</h1>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="line">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+	 	 		{{> login}}
+		 	</div>
+			<div class="col-xs-12">
+		 	 	{{#if currentUser}}
+		 	 		{{#if inLine}}
+						{{> lineList}}
+		 	 		{{else}}
+						{{> joinLine}}
+		 	 		{{/if}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<template name="joinLine">
+	<br>
+	<button class="btn btn-primary">
+		Join the line
+	</button>
+</template>
+
+<template name="lineList">
+	{{#each line}}
+		
+	{{/each}}
+</template>
+
+<template name="login">
+	{{> loginButtons}}
+</template>
